@@ -159,9 +159,9 @@ function! s:git.catfile(hash, path)
   elseif a:hash == 'unstaged'
     let catfile = join(readfile(a:path), "\n")
   elseif a:hash == 'staged'
-    let catfile = agit#git#exec('cat-file -p ":' . relpath . '"', self.git_root)
+    let catfile = agit#git#exec('cat-file ' . g:agit_catfile_option . ' ":' . relpath . '"', self.git_root)
   else
-    let catfile = agit#git#exec('cat-file -p "' . a:hash . ':' . relpath . '"', self.git_root)
+    let catfile = agit#git#exec('cat-file ' . g:agit_catfile_option . ' "' . a:hash . ':' . relpath . '"', self.git_root)
   endif
   return catfile
 endfunction

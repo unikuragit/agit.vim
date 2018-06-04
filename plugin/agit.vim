@@ -33,6 +33,9 @@ endif
 if !exists('g:agit_reuse_tab')
     let g:agit_reuse_tab = 1
 endif
+if !exists('g:agit_catfile_option')
+    let g:agit_catfile_option = '-p'
+endif
 
 nnoremap <silent> <Plug>(agit-reload)  :<C-u>call agit#reload()<CR>
 nnoremap <silent> <Plug>(agit-scrolldown-stat) :<C-u>call agit#remote_scroll('stat', 'down')<CR>
