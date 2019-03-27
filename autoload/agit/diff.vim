@@ -86,7 +86,9 @@ function! agit#diff#sidebyside(git, relpath, revspec) abort
     throw "Agit: Specified revisions indicate same commit"
   endif
   let hash = (rhash ==# 'unstaged' || rhash ==# 'staged' ? 'HEAD' : rhash)
-  if agit#git#exec('ls-tree --name-only "' . hash . '" -- "' . a:git.filepath . '"', a:git.git_root) == ''
+  let filepath = has('win32') ?
+      \ substitute(a:git.filepath, '\\$', '', '') : a:git.filepath
+  if agit#git#exec('ls-tree --name-only "' . hash . '" -- "' . filepath . '"', a:git.git_root) == ''
     throw "Agit: File not tracked: " . a:relpath
   endif
   tabnew
